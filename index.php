@@ -43,7 +43,7 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <div class="grid">
                     <a href="read.php?id=<?php echo $user['id']; ?>" class="icon-wrapper" data-tooltip="Détail"><i class="gg-search"></i></a>
                     <a href="update.php?id=<?php echo $user['id']; ?>" class="icon-wrapper" data-tooltip="Modifier"><i class="gg-pen"></i></a>
-                    <a href="delete.php?id=<?php echo $user['id']; ?>" class="icon-wrapper" data-tooltip="Supprimer"><i class="gg-trash"></i></a>
+                    <a href="delete.php?id=<?php echo $user['id']; ?>" class="icon-wrapper" data-tooltip="Supprimer"  data-target="modal-delete" onclick="toggleModal(event)"><i class="gg-trash"></i></a>
                 </div>
             </td>
         </tr>
@@ -54,5 +54,34 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
         </tbody>
     </table>
 </div>
+<dialog id="modal-delete">
+    <article>
+        <header>
+            <button
+                    aria-label="Close"
+                    rel="prev"
+                    data-target="modal-delete"
+                    onclick="toggleModal(event)"
+            ></button>
+            <h3>Confirmez-vous la suppression ?</h3>
+        </header>
+        <p>
+            La suppression est irréversible. Souhaitez-vous réellement supprimer cet élément ?
+        </p>
+        <footer>
+            <button
+                    role="button"
+                    class="secondary"
+                    data-target="modal-delete"
+                    onclick="toggleModal(event)"
+            >
+                Annuler</button
+            ><button autofocus data-target="modal-delete" onclick="toggleModal(event)">
+                Supprimer
+            </button>
+        </footer>
+    </article>
+</dialog>
+<script src="js/modal.js"></script>
 </body>
 </html>
