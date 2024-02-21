@@ -13,14 +13,16 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>CRUD Users</title>
     <link rel="stylesheet" href="css/pico.css">
-    <link rel="stylesheet" href="css/pico.colors.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="container">
     <h1>Gestion des utilisateurs</h1>
-    <a href="create.php" role="button">Ajouter un utilisateur</a>
-    <table>
-        <thead>
+    <a href="create.php" class="icon-wrapper" data-tooltip="Ajouter un utilisateur"><i class="gg-add"></i></a>
+    <br>
+    <table class="striped">
+        <thead data-theme="dark">
         <tr>
             <th>ID</th>
             <th>Nom</th>
@@ -38,9 +40,11 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo $user['name']; ?></td>
             <td><?php echo $user['email']; ?></td>
             <td>
-                <a href="read.php?id=<?php echo $user['id']; ?>" role="button">Voir</a>
-                <a href="update.php?id=<?php echo $user['id']; ?>" role="button">Modifier</a>
-                <a href="delete.php?id=<?php echo $user['id']; ?>" role="button" class="pico-background-red-500">Supprimer</a>
+                <div class="grid">
+                    <a href="read.php?id=<?php echo $user['id']; ?>" class="icon-wrapper" data-tooltip="Détail"><i class="gg-search"></i></a>
+                    <a href="update.php?id=<?php echo $user['id']; ?>" class="icon-wrapper" data-tooltip="Modifier"><i class="gg-pen"></i></a>
+                    <a href="delete.php?id=<?php echo $user['id']; ?>" class="icon-wrapper" data-tooltip="Supprimer"><i class="gg-trash"></i></a>
+                </div>
             </td>
         </tr>
         <!-- fin user -->
