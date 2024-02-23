@@ -1,4 +1,5 @@
 <?php
+global $db;
 require 'database.php';
 
 $sql = "SELECT user.id, user.name, email, role.name as role FROM user INNER JOIN role ON user.role_id = role.id WHERE user.id=:id";

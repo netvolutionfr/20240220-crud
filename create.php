@@ -1,3 +1,11 @@
+<?php
+global $db;
+require 'database.php';
+
+$sql = "SELECT * FROM role";
+$statement = $db->query($sql);
+$roles = $statement->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -10,12 +18,26 @@
 <body>
 <div class="container">
     <h1>Créer un utilisateur</h1>
-    <form>
-        <label for="name">Nom</label>
-        <input type="text" id="name" name="name">
+    <form action="create_submit.php" method="post">
+        <label for="name">Nom et prénom</label>
+        <input type="text" id="name" name="name" required>
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" name="email" required>
+
+        <label for="role">Rôle</label>
+        <select id="role" name="role" required>
+            <option value="" selected>Sélectionner un rôle</option>
+            <?php
+            foreach($roles as $role) {
+            ?>
+            <option value="<?php echo $role["id"]; ?>"><?php echo $role["name"]; ?></option>
+            <?php
+            }
+            ?>
+        </select>
+
+        <button type="submit">Créer</button>
     </form>
 </div>
 </body>
